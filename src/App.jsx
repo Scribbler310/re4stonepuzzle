@@ -103,7 +103,7 @@ export default function App() {
     setScrambling(true);
 
     const dialIds = ["left", "top-right", "bottom-right"];
-    const steps = 5 + Math.floor(Math.random() * 3); // 5 to 7 random dial rotations
+    const steps = 10 + Math.floor(Math.random() * 6); // 10 to 15 random dial rotations
     let currentStep = 0;
 
     const interval = setInterval(() => {
