@@ -96,47 +96,45 @@ export default function App() {
     sounds.init();
   };
 
-  // Perform Scramble
+  // Perform Scramble by executing sequential random dial rotations
   const handleScramble = (isInitial = false) => {
+    if (scrambling) return;
     setWon(false);
     setScrambling(true);
-    if (!muted && !isInitial) {
-      sounds.playReset();
-    }
-
-    // Run 5 random rotations with visual delays
-    let currentPieces = [
-      { id: 0, currentPos: 0, visualRotation: 0 },
-      { id: 1, currentPos: 1, visualRotation: 0 },
-      { id: 2, currentPos: 2, visualRotation: 0 },
-      { id: 3, currentPos: 3, visualRotation: 0 },
-      { id: 4, currentPos: 4, visualRotation: 0 },
-      { id: 5, currentPos: 5, visualRotation: 0 },
-      { id: 6, currentPos: 6, visualRotation: 0 }
-    ];
 
     const dialIds = ["left", "top-right", "bottom-right"];
-    for (let k = 0; k < 5; k++) {
+    const steps = 5 + Math.floor(Math.random() * 3); // 5 to 7 random dial rotations
+    let currentStep = 0;
+
+    const interval = setInterval(() => {
       const dialId = dialIds[Math.floor(Math.random() * 3)];
-      const dial = DIALS.find(d => d.id === dialId);
-      const pos = dial.positions;
+      
+      if (!muted) {
+        sounds.playClick();
+      }
 
-      // Swap pieces clockwise
-      const p0 = currentPieces.find(p => p.currentPos === pos[0]);
-      const p1 = currentPieces.find(p => p.currentPos === pos[1]);
-      const p2 = currentPieces.find(p => p.currentPos === pos[2]);
+      setPieces(prevPieces => {
+        const dial = DIALS.find(d => d.id === dialId);
+        const pos = dial.positions;
+        const p0 = prevPieces.find(p => p.currentPos === pos[0]);
+        const p1 = prevPieces.find(p => p.currentPos === pos[1]);
+        const p2 = prevPieces.find(p => p.currentPos === pos[2]);
 
-      currentPieces = currentPieces.map(p => {
-        if (p.id === p0.id) return { ...p, currentPos: pos[1], visualRotation: p.visualRotation + 120 };
-        if (p.id === p1.id) return { ...p, currentPos: pos[2], visualRotation: p.visualRotation + 120 };
-        if (p.id === p2.id) return { ...p, currentPos: pos[0], visualRotation: p.visualRotation + 120 };
-        return p;
+        return prevPieces.map(p => {
+          if (p.id === p0.id) return { ...p, currentPos: pos[1], visualRotation: p.visualRotation + 120 };
+          if (p.id === p1.id) return { ...p, currentPos: pos[2], visualRotation: p.visualRotation + 120 };
+          if (p.id === p2.id) return { ...p, currentPos: pos[0], visualRotation: p.visualRotation + 120 };
+          return p;
+        });
       });
-    }
 
-    setPieces(currentPieces);
-    setMoves(0);
-    setTimeout(() => setScrambling(false), 300);
+      currentStep++;
+      if (currentStep >= steps) {
+        clearInterval(interval);
+        setScrambling(false);
+        setMoves(0); // Reset move count after scrambling completes
+      }
+    }, isInitial ? 60 : 250);
   };
 
   // Rotate a Dial Clockwise
