@@ -1,12 +1,17 @@
-# React + Vite
+---
+title: RE4 Hexagon Pedestal Puzzle
+emoji: 🧩
+colorFrom: amber
+colorTo: stone
+sdk: docker
+app_port: 80
+pinned: false
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Resident Evil 4 Remake - Hexagon Stone Pedestal Puzzle
 
-Currently, two official plugins are available:
+An interactive 2D recreation of the Resident Evil 4 Remake Hexagon Pedestal Puzzle built with React, Tailwind CSS v4, and synthesized Web Audio effects. Dockerized and hosted on Hugging Face Spaces.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to Play
+- Rotate the 3 interactive dial pins placed at the hexagon intersections to rotate adjacent pieces.
+- Return all pieces to their correct locations and visual rotations to align the coin illustration.
