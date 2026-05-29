@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cinzel", Georgia, serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+}
+
+/* Base resets & styles */
+body {
+  margin: 0;
+  background-color: #0c0b0a;
+  color: #e5e5e7;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* Atmospheric elements */
+.stone-texture {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(24, 20, 18, 0.4) 0%, rgba(10, 8, 7, 0.95) 100%),
+    repeating-conic-gradient(from 0deg, rgba(20, 20, 20, 0.15) 0deg 30deg, rgba(40, 40, 40, 0.15) 30deg 60deg);
+  background-blend-mode: multiply;
+}
+
+.pedestal-ring {
+  box-shadow: 
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(139, 92, 26, 0.15);
+}
+
+.gold-glow {
+  text-shadow: 0 0 10px rgba(217, 119, 6, 0.6), 0 0 2px rgba(251, 191, 36, 0.8);
+}
+
+.gold-glow-box {
+  box-shadow: 0 0 15px rgba(217, 119, 6, 0.4), inset 0 0 8px rgba(251, 191, 36, 0.2);
+}
+
+/* Perfect hexagons using CSS clip-path */
+.hexagon-clip {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Runic glowing animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(217, 119, 6, 0.3)) brightness(0.9);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.9)) brightness(1.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes runeAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-rune-appear {
+  animation: runeAppear 0.5s ease-out forwards;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #141210;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a322b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
+}
