@@ -1,10 +1,10 @@
 ---
 title: RE4 Hexagon Pedestal Puzzle
 emoji: 🧩
-colorFrom: amber
-colorTo: stone
+colorFrom: yellow
+colorTo: gray
 sdk: docker
-app_port: 80
+app_port: 8080
 pinned: false
 ---
 
